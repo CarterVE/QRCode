@@ -36,8 +36,10 @@ internal func _generate(_ data: Data, errorCorrection: String) -> [[Bool]]? {
 		assert(false)
 		return nil
 	}
+    
+    let dataString = String(decoding: data, as: UTF8.self)
 
-	guard let qrCode = try? QRCodeGenerator.QRCode.encode(binary: [UInt8](data), ecl: mappedECC) else {
+    guard let qrCode = try? QRCodeGenerator.QRCode.encode(text: dataString, ecl: mappedECC) else {
 		return nil
 	}
 
